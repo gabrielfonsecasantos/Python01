@@ -90,19 +90,19 @@ class Vegetable(Plant):
 
 if __name__ == "__main__":
     print("=== Garden Plant Types ===")
-    
+
     print("=== Flower")
     rose = Flower("Rose", 15.0, 10, "red")
     rose.show()
     print("[asking the rose to bloom]")
     rose.bloom()
-    
+
     print("\n=== Tree")
     oak = Tree("Oak", 200.0, 365, 5.0)
     oak.show()
     print("[asking the oak to produce shade]")
     oak.produce_shade()
-    
+
     print("\n=== Vegetable")
     tomato = Vegetable("Tomato", 5.0, 10, "April")
     tomato.show()
