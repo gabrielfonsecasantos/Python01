@@ -20,11 +20,9 @@ class Plant:
 
     def __init__(self, name: str, height: float, age: int) -> None:
         self._name: str = name
-        self._height: float = 0.0
-        self._age: int = 0
+        self._height: float = height
+        self._age: int = age
         self.stats = self.Statistics()
-        self.set_height(height, is_init=True)
-        self.set_age(age, is_init=True)
 
     def get_name(self) -> str:
         return self._name
@@ -35,21 +33,21 @@ class Plant:
     def get_age(self) -> int:
         return self._age
 
-    def set_height(self, height: float, is_init: bool = False) -> None:
-        if height >= 0:
-            self._height = height
+    def set_age(self, age: int) -> None:
+        if age < 0:
+            print(f"{self._name}: Error, age can't be negative")
+            print("Age update rejected")
         else:
-            print(f"{self._name}: Error, height can't be negative")
-            if not is_init:
-                print("Height update rejected")
-
-    def set_age(self, age: int, is_init: bool = False) -> None:
-        if age >= 0:
             self._age = age
+            print(f"Age updated: {self._age} days")
+
+    def set_height(self, height: float) -> None:
+        if height < 0:
+            print(f"{self._name}: Error, height can't be negative")
+            print("Height update rejected")
         else:
-            print(f"{self._name}: Error, age can't be negative.")
-            if not is_init:
-                print("Age update rejected.")
+            self._height = height
+            print(f"Height updated: {self._height}cm")
 
     @staticmethod
     def is_older_than_a_year(age: int) -> bool:
@@ -82,8 +80,7 @@ class Flower(Plant):
 
     def bloom(self) -> None:
         self._has_bloomed = True
-        print(f"{self._name}: {self._height}cm, {self._age} days old")
-        print(f"Color: {self._color}")
+        self.show()
         print(f"{self._name} is blooming beautifully!")
 
     def show(self) -> None:
@@ -181,6 +178,7 @@ if __name__ == "__main__":
     display_statistics(sunflower)
 
     print("\n=== Anonymous")
+
     anon = Plant.create_anonymous()
     anon.show()
     display_statistics(anon)
